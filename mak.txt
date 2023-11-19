@@ -1,0 +1,17 @@
+To compile main:
+gcc -o main main.c -Ilib/batches -Ilib/matrices  -Llib -lMB
+./main
+
+To compile the libraries:
+- matrices is compiled without any worries:
+	gcc -c matrices.c -o matrices.o
+	ar rcs libmatrices.a matrices.o
+
+To compile batches:
+- you just need to tell the linker where to find the header for matrices:
+	gcc -c -o batches.o batches.c -I../matrices
+
+To make the static library:
+- it just comprises both .o files in the same archive, in the lib folder
+	ar rcs libMB.a matrices/matrices.o batches/batches.o
+
